@@ -1,3 +1,4 @@
+//Prototype
 int menu();
 int menuConvert();
 int menuDecimal();

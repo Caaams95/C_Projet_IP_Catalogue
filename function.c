@@ -1,3 +1,4 @@
+//Prototype
 int menuConvert();
 int clearScreen();
 int exitText();

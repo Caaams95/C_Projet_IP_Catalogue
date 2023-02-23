@@ -12,5 +12,5 @@
 int main() {    
     menu();  
     return 0;
-    //Faire un si menu erreor --> print erreur d'ouverture ...
+    //Faire un "si menu error --> print erreur d'ouverture ..."
 }
