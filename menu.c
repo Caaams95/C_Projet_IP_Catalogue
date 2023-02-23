@@ -144,7 +144,7 @@ int menuBinaire(){
 
         case 1:
             clearScreen();
-            IpDecTobin();
+            IpBinTodec();
             break;
 
         case 2:
