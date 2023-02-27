@@ -56,6 +56,7 @@ int menuConvert(){
         printf("0 - Retour\n");
         printf("1 - Format entree IP : Decimal\n");
         printf("2 - Format entree IP : Binaire\n");  
+        printf("3 - Format entree IP : Hexadecimal\n");  
 
         printf("\n => Ton choix : ");
         scanf("%d", &choice);
@@ -74,6 +75,11 @@ int menuConvert(){
         case 2:
             clearScreen();
             menuBinaire();
+            break;
+
+        case 3:
+            clearScreen();
+            menuHexa();
             break;
 
         default:
@@ -106,12 +112,12 @@ int menuDecimal(){
 
         case 1:
             clearScreen();
-            IpDecTobin();
+            ipDecTobin();
             break;
 
         case 2:
             clearScreen();
-            printf("En developpement...\n");
+            ipDecToHex();
             break;
 
         default:
@@ -144,12 +150,55 @@ int menuBinaire(){
 
         case 1:
             clearScreen();
+<<<<<<< HEAD
             IpBinTodec();
+=======
+            ipBinTodec();
+>>>>>>> main
             break;
 
         case 2:
             clearScreen();
-            printf("En developpement...\n");
+            ipBinToHex();
+            break;
+
+        default:
+            break;
+        }
+        
+    } while (choice!=0);
+    return 0;
+}
+
+
+int menuHexa(){
+    clearScreen();
+    int choice;
+    do{
+        printf("=====================================\n");
+        printf("Menu / Convertion d'IP / Hexadecimal:\n");
+        printf("=====================================\n");
+        printf("0 - Retour\n");
+        printf("1 - Format sortie IP : Decimal\n");
+        printf("2 - Format sortie IP : Binaire\n");  
+
+        printf("\n => Ton choix : ");
+        scanf("%d", &choice);
+        
+        switch (choice){
+        case 0:
+            clearScreen();
+            return 0;
+            break;
+
+        case 1:
+            clearScreen();
+            printf("En developpement ....\n");
+            break;
+
+        case 2:
+            clearScreen();
+            printf("En developpement ....\n");
             break;
 
         default:
