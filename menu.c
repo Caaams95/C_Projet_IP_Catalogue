@@ -150,11 +150,7 @@ int menuBinaire(){
 
         case 1:
             clearScreen();
-<<<<<<< HEAD
-            IpBinTodec();
-=======
             ipBinTodec();
->>>>>>> main
             break;
 
         case 2:
