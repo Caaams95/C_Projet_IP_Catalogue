@@ -72,27 +72,28 @@ void save_ip0(char *nomdufichier,struct IP ip){
 }
 ///#################################################################################
 //Lire un ip depuis un fichier
-struct IP lire_ip(char *nomdufichier){
-    struct IP ips[100];
+struct IP* lire_ip(char *nomdufichier){
+    struct IP* ips = malloc(sizeof(struct IP) * 16); // allouer la mémoire pour le tableau
+    if (ips == NULL) { // vérifier si l'allocation a réussi
+        printf("Erreur : impossible d'allouer de la mémoire\n");
+        return NULL;
+    }
     int count=0;
     FILE *fp = fopen(nomdufichier, "r");
     if (fp == NULL) {
         printf("Erreur : impossible d'ouvrir le fichier\n");
     }
-    //char ip1[100]; 
     char ip1[16]; // buffer pour stocker chaque ligne
     char* token;
     char* ip_address;
     int mask;
     char * token1; 
-    int i;
+    int i, j=0;
     int tabtoken[4]; //tableau pour recuperer les different octet du ip qu'on lit pour ensuite le metre dans notre structure qu'on doit retourner
-    while (fgets(ip1, 16, fp)!=NULL) { // lecture de chaque ligne
+    while (fgets(ip1, 100, fp)!=NULL) { // lecture de chaque ligne
         //printf("Ligne lue : %s", ip1);
         fscanf(fp, "%s", ip1);// on recupere une ligne du fichier grace a notre buffer de taille 16
-   
         // traitement de la ligne ici
-    
         token = strtok(ip1, "/"); //on utilise la fonction strtok  pour diviser la chaîne ip1 en deux parties, avec le caractère "/" comme séparateur.
         ip_address = token; //la première partie de la chaine qui est l'ip 
         token = strtok(NULL, "/");
@@ -100,14 +101,9 @@ struct IP lire_ip(char *nomdufichier){
         //printf("IP address: %s\n", ip_address);
         //printf("Mask: %d\n", mask);
         //#### cette fois on essaye de diviser ip_adress qui est un string en quatre parti pour l'avoir en entier et le stocker comme ip dans dans notre structture avec son masque
-        
         i = 0;
-        
         token1 = strtok(ip_address, "."); // Divise la chaîne en utilisant le délimiteur "."
-
         while (token1 != NULL && i < 4) { // Parcourt chaque sous-chaîne du ip "ip_adress pour le recuperer octet par octet et le convertir en entier"
-        
-            //printf("%s\n", token1);
             tabtoken[i] = atoi(token1);
             token1 = strtok(NULL, "."); // Avance vers la prochaine sous-chaîne
             i++;
@@ -120,10 +116,8 @@ struct IP lire_ip(char *nomdufichier){
         ips[count].mask = mask;
         count++;
     }    
-    fclose(fp); //on ferme le fichier
-    //printf("%d",count);
-    afficher_ip(ips[0]);
-    return ips[count];
+    fclose(fp); 
+    return ips;
 }
 
 ///#################################################################################
@@ -170,12 +164,20 @@ int main(){
     
     afficher_ip(ip1);
     afficher_ip(ip2);
-    save_ip("catalogue.txt",ip1);
-    save_ip("catalogue.txt",ip2);
-    afficher_ip(lire_ip("catalogue.tx"));
-
-    supprimer_ip("catalogue.txt",1);
-    
+    //save_ip("catalogue.txt",ip1);
+    //save_ip("catalogue.txt",ip2);
+    struct IP* ips = malloc(sizeof(struct IP) * 16); // allouer la mémoire pour le tableau
+    if (ips == NULL) { // vérifier si l'allocation a réussi
+        printf("Erreur : impossible d'allouer de la mémoire\n");
+        return NULL;
+    }
+    ips = lire_ip("catalogue.txt");
+    for (int i = 0; i < 10; i++)
+    {
+        afficher_ip( ips[i]);
+    }
+   
+    supprimer_ip("catalogue.txt",1);    
  
     
 
