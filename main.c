@@ -5,12 +5,15 @@
 
 #include "function.c"
 #include "menu.c"
+#include "gestion_ip.c"
+#include "affichage.c"
 
 
 
 
 int main() {    
-    menu();  
+    char *filename = "listeIP.txt";
+    menu(filename);  
     
     return 0;
     //TODO 
