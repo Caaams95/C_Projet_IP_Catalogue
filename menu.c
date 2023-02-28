@@ -1,11 +1,12 @@
 //Prototype
+
 int menu();
 int menuConvert();
 int menuDecimal();
 int menuBinaire();
+int menuHex();
 
-
-int menu() {
+int menu(char *filename){
     clearScreen();
     int choice;
     do{
@@ -28,7 +29,7 @@ int menu() {
 
         case 1:
             clearScreen();
-            printf("En developpement...\n");
+            menuManageIP(filename);
             break;
 
         case 2:
@@ -39,12 +40,139 @@ int menu() {
             break;
         }
 
-    } while (choice!=0);
+    } while(choice!=0);
     
     return 0;
 }
 
 
+
+int menuManageIP(char *filename){
+    clearScreen();
+    int choice;
+    do{
+        printf("====================\n");
+        printf("Menu / Gestion IP /:\n");
+        printf("====================\n");
+        printf("0 - Retour\n");
+        printf("1 - Modifier la liste d'IP\n");
+        printf("2 - Afficher la liste d'IP\n");  
+
+        printf("\n => Ton choix : ");
+        scanf("%d", &choice);
+        
+        switch (choice){
+        case 0:
+            clearScreen();
+            return 0;
+            break;
+
+        case 1:
+            clearScreen();
+            menuEditIp(filename);
+            break;
+
+        case 2:
+            clearScreen();
+            menuPrintIp(filename);
+            break;
+
+        default:
+            break;
+        }
+        
+    } while (choice!=0);
+    return 0;
+}
+
+int menuEditIp(char *filename){
+    clearScreen();
+    int choice;
+    do{
+        printf("===========================================\n");
+        printf("Menu / Gestion IP / Modifier la liste d'IP:\n");
+        printf("===========================================\n");
+        printf("0 - Retour\n");
+        printf("1 - Ajouter une IP\n");
+        printf("2 - Supprimer une IP\n");
+
+        printf("\n => Ton choix : ");
+        scanf("%d", &choice);
+        
+        switch (choice){
+        case 0:
+            clearScreen();
+            return 0;
+            break;
+
+        case 1:
+            clearScreen();
+            // addIp(filename);
+            break;
+
+        case 2:
+            clearScreen();
+            // removeIp(filename);
+            break;
+
+        default:
+            break;
+        }
+        
+    } while (choice!=0);
+    return 0;
+}
+
+
+int menuPrintIp(char *filename){
+    clearScreen();
+    int choice;
+    do{
+        printf("==============================\n");
+        printf("Menu / Gestion IP / Affichage:\n");
+        printf("==============================\n");
+        printf("0 - Retour\n");
+        printf("1 - Afficher IP selon un MASK\n");
+        printf("2 - Afficher les X premieres IP enregistrées\n");  
+        printf("3 - Afficher les X dernieres IP enregistrées\n");  
+        printf("4 - Afficher toutes les IP enregistrées\n");  
+
+        printf("\n => Ton choix : ");
+        scanf("%d", &choice);
+        
+        switch (choice){
+        case 0:
+            clearScreen();
+            return 0;
+            break;
+
+        case 1:
+            clearScreen();
+            maskFilter(filename);
+            break;
+
+        case 2:
+            clearScreen();
+            firstsIP(filename);
+            break;
+
+        case 3:
+            clearScreen();
+            lastsIP(filename);
+            break;
+
+        case 4:
+            clearScreen();
+            allIP(filename);
+            break;
+
+        default:
+            break;
+        }
+        
+    } while (choice!=0);
+    return 0;
+}
 
 int menuConvert(){
     clearScreen();
@@ -79,7 +207,7 @@ int menuConvert(){
 
         case 3:
             clearScreen();
-            menuHexa();
+            menuHex();
             break;
 
         default:
@@ -167,7 +295,7 @@ int menuBinaire(){
 }
 
 
-int menuHexa(){
+int menuHex(){
     clearScreen();
     int choice;
     do{
