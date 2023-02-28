@@ -5,7 +5,7 @@ int menuDecimal();
 int menuBinaire();
 
 
-int menu() {
+int menu(){
     clearScreen();
     int choice;
     do{
@@ -79,7 +79,7 @@ int menuConvert(){
 
         case 3:
             clearScreen();
-            menuHexa();
+            menuHex();
             break;
 
         default:
@@ -167,7 +167,7 @@ int menuBinaire(){
 }
 
 
-int menuHexa(){
+int menuHex(){
     clearScreen();
     int choice;
     do{

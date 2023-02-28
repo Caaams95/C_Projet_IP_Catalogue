@@ -1,5 +1,4 @@
 //Prototypes
-int menuConvert();
 int clearScreen();
 int exitText();
 
@@ -120,4 +119,46 @@ int ipBinToHex(){
     decToHex(binToDec(ip[2])); printf("."); 
     decToHex(binToDec(ip[3])); printf("\n");
     return 0;
+}
+
+int hexToDec() {
+    char hex[20];
+    int decimal = 0, i = 0, val, len;
+
+    printf("Entrez un nombre hexadécimal: ");
+    scanf("%s", hex);
+
+    len = strlen(hex);
+
+    // Convertit chaque chiffre hexadécimal en décimal et ajoute au résultat
+    for (i = 0; hex[i]!='\0'; i++) {
+        if(hex[i]>='0' && hex[i]<='9') {
+            val = hex[i] - 48;
+        }
+        else if(hex[i]>='a' && hex[i]<='f') {
+            val = hex[i] - 97 + 10;
+        }
+        else if(hex[i]>='A' && hex[i]<='F') {
+            val = hex[i] - 65 + 10;
+        }
+        decimal += val * pow(16, len-i-1);
+    }
+
+    printf("La valeur décimale est: %d", decimal);
+
+    return 0;
+}
+
+int ipHexToDec(){
+    clearScreen();
+    char ip[4][20]={0};
+    printf("Entrez une adresse IP hexadecimale (séparée par des points) : ");
+    scanf("%s.%s.%s.%s", &ip[0], &ip[1], &ip[2], &ip[3]);
+    printf("L'adresse IP decimale est : ");
+    hexToDec(binToDec(ip[0])); printf("."); 
+    hexToDec(binToDec(ip[1])); printf(".");
+    hexToDec(binToDec(ip[2])); printf("."); 
+    decToHex(binToDec(ip[3])); printf("\n");
+    return 0;
+
 }
