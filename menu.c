@@ -107,12 +107,13 @@ int menuEditIp(char *filename){
 
         case 1:
             clearScreen();
-            // addIp(filename);
+
+            addIp(filename);
             break;
 
         case 2:
             clearScreen();
-            // removeIp(filename);
+            removeIp(filename);
             break;
 
         default:
@@ -317,12 +318,12 @@ int menuHex(){
 
         case 1:
             clearScreen();
-            printf("En developpement ....\n");
+            ipHexToDec();
             break;
 
         case 2:
             clearScreen();
-            printf("En developpement ....\n");
+            ipHexToBin();
             break;
 
         default:

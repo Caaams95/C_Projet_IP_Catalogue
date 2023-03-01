@@ -10,7 +10,6 @@
 
 
 
-
 int main() {    
     char *filename = "listeIP.txt";
     menu(filename);  
