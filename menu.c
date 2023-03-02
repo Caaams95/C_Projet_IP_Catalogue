@@ -1,6 +1,8 @@
-//Prototype
-
+//Prototypes
 int menu();
+int menuManageIP(char *filename);
+int menuEditIp(char *filename);
+int menuPrintIp(char *filename);
 int menuConvert();
 int menuDecimal();
 int menuBinaire();

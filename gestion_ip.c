@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-//Prototype
-//int load_ips(struct IP *ips, int *count);
-//void save_ip(char *nomdufichier, struct IP ip);
+//Prototypes
+struct IP creer_ip(int a,int b,int c,int d,int m);
+void afficher_ip(struct IP ip);
+void afficher_ip(struct IP ip);
+void removeIp(char *filename);
 
 //une structure qui contient quatre champs pour représenter les quatre octets d'une adresse IP
 struct IP {
@@ -16,8 +15,7 @@ struct IP {
 
 ///##################################################################################
 //creer un ip
-struct IP creer_ip(int a,int b,int c,int d,int m)
-{   
+struct IP creer_ip(int a,int b,int c,int d,int m){   
     struct IP ip;
     if (!(a>0 || a<255 || b>=0 || b<255 || c>=0 || c<=255 || d>=0 || d<255 || m>0 || m<=32))
     {
@@ -38,49 +36,43 @@ void afficher_ip(struct IP ip){
      printf("%d.%d.%d.%d/%d\n", ip.octet1,ip.octet2,ip.octet3,ip.octet4,ip.mask );
 }
 ///#################################################################################
-int addIp(char *nomdufichier){
+int addIp(char *filename){
 
-    FILE *fichier = fopen(nomdufichier, "a");
+    FILE *fichier = fopen(filename, "a");
     if (fichier == NULL) {
         printf("Erreur d'ouverture du fichier\n");
         return 0;
     }
 
     int ip[5]={999};
-    printf("Saisissez l'IP que vous voulez ajouter avec son MASK (ex: 192.168.13.1/24) : ");
+    printf("Saisissez l'IP que vous voulez ajouter avec son MASK (ex: 192.168.1.1/24) : ");
     printf("\n => Ta saisie : ");
     scanf("%d.%d.%d.%d/%d", &ip[0], &ip[1], &ip[2], &ip[3], &ip[4]);
     fflush(stdin);
 
     if (!(ip[0]>0 && ip[0]<255 && ip[1]>=0 && ip[1]<255 && ip[2]>=0 && ip[2]<=255 && ip[3]>=0 && ip[3]<255 && ip[4]>0 && ip[4]<=32)) {
         printf("Erreur : valeur invalide dans la structure IP\n");
-        fclose(fichier);
-        return 0;
     }else{
         fprintf(fichier, "%d.%d.%d.%d/%d\n", ip[0], ip[1], ip[2], ip[3], ip[4]);
-        fclose(fichier);
-        return 0;
     }
     
-    // int toto;
-    // printf("Saisissez l'IP que vous voulez ajouter avec son MASK (ex: 192.168.13.1/24) : ");
-    // printf("\n => Ta saisie : ");
-    // scanf("%d", &toto);
-    // printf("Tu viens de saisir %d", toto);
+    fclose(fichier);
+        return 0;
+
 }
 ///#################################################################################
 
 //supprimer une ligne
 
-void removeIp(char *nomdufichier) {
+void removeIp(char *filename) {
     char ip[20];
 
-    printf("Saisissez l'IP que vous voulez supprimer :\n");;
+    printf("Saisissez l'IP que vous voulez supprimer avec son MASK (ex: 192.168.1.1/24):\n");;
     printf("\n => Ta saisie : ");
     scanf("%s", &ip);
 
 
-    FILE *fichier = fopen(nomdufichier, "r");
+    FILE *fichier = fopen(filename, "r");
     if (fichier == NULL) {
         printf("Erreur d'ouverture du fichier\n");
         return;
@@ -99,13 +91,15 @@ void removeIp(char *nomdufichier) {
         }
         ligne_actuelle++;
     }
+
     fclose(fichier);
     fclose(nouveau_fichier);
-    if (remove(nomdufichier) != 0) {
+
+    if (remove(filename) != 0) {
         printf("Erreur de suppression du fichier original\n");
         return;
     }
-    if (rename("temp.txt", nomdufichier) != 0) {
+    if (rename("temp.txt", filename) != 0) {
         printf("Erreur de renommage du fichier temporaire\n");
         return;
     }
