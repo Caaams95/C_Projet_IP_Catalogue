@@ -125,7 +125,7 @@ int ipBinToHex(){
     return 0;
 }
 
-char hexToDec(char *hex) {
+int hexToDec(char *hex) {
     int decimal = 0, i = 0, val, len;
 
     len = strlen(hex);
@@ -144,9 +144,9 @@ char hexToDec(char *hex) {
         decimal += val * pow(16, len-i-1);
     }
 
-    printf("%d", decimal);
+    // printf("%d", decimal);
 
-    return 0;
+    return decimal;
 }
 
 int ipHexToDec(){
@@ -156,31 +156,27 @@ int ipHexToDec(){
     printf("Entrez une adresse IP hexadecimale (séparée par des points) : ");
     scanf("%s", &scanfIp);
 
-    sscanf(scanfIp, "%3[^.].%3[^.].%3[^.].%3s", ip[0], ip[1], ip[2], ip[3]);
+    sscanf(scanfIp, "%3[^.].%3[^.].%3[^.].%3s", ip[0], ip[1], ip[2], ip[3]); //extrait jusqu'à 3 caractères qui ne sont pas un point
 
     printf("L'adresse IP decimale est : ");
-    hexToDec(ip[0]); printf("."); 
-    hexToDec(ip[1]); printf(".");
-    hexToDec(ip[2]); printf("."); 
-    hexToDec(ip[3]); printf("\n");
+    printf("%d.%d.%d.%d\n", hexToDec(ip[0]), hexToDec(ip[1]), hexToDec(ip[2]), hexToDec(ip[3]));
+
     return 0;
 
 }
 
-// int ipHexToBin(){
-//     clearScreen();
-//     char *ip[4][20];
-//     char scanfIp[30];
-//     printf("Entrez une adresse IP hexadecimale (séparée par des points) : ");
-//     scanf("%s", &scanfIp);
+int ipHexToBin(){
+    clearScreen();
+    char *ip[4][20];
+    char scanfIp[30];
+    printf("Entrez une adresse IP hexadecimale (séparée par des points) : ");
+    scanf("%s", &scanfIp);
 
-//     sscanf(scanfIp, "%3[^.].%3[^.].%3[^.].%3s", ip[0], ip[1], ip[2], ip[3]);
+    sscanf(scanfIp, "%3[^.].%3[^.].%3[^.].%3s", ip[0], ip[1], ip[2], ip[3]); //extrait jusqu'à 3 caractères qui ne sont pas un point
 
-//     printf("L'adresse IP binaire est : ");
-//     decToBin(hexToDec(ip[0])); printf("."); 
-//     decToBin(hexToDec(ip[1])); printf(".");
-//     decToBin(hexToDec(ip[2])); printf("."); 
-//     decToBin(hexToDec(ip[3])); printf("\n");
-//     return 0;
+    printf("L'adresse IP decimale est : ");
+    printf("%d.%d.%d.%d\n", decToBin(hexToDec(ip[0])), decToBin(hexToDec(ip[1])), decToBin(hexToDec(ip[2])), decToBin(hexToDec(ip[3])));
 
-// }
+    return 0;
+
+}

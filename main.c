@@ -15,6 +15,4 @@ int main() {
     menu(filename);  
     
     return 0;
-    //TODO 
-    //Faire un "si menu error --> print erreur d'ouverture ..."
 }
