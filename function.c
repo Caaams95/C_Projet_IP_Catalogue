@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
 //Prototypes
 int clearScreen();
 int exitText();
@@ -136,10 +132,10 @@ int hexToDec(char *hex) {
             val = hex[i] - 48;
         }
         else if(hex[i]>='a' && hex[i]<='f') {
-            val = hex[i] - 97 + 10;
+            val = hex[i] - 'a' + 10;
         }
         else if(hex[i]>='A' && hex[i]<='F') {
-            val = hex[i] - 65 + 10;
+            val = hex[i] - 'A' + 10;
         }
         decimal += val * pow(16, len-i-1);
     }

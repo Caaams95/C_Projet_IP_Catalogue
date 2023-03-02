@@ -1,12 +1,9 @@
-#include<stdio.h>
-#include<string.h>
-
-int compteur_ligne(char *nom_fichier)
+int compteur_ligne(char *filename)
 {
     FILE *fichier;
     char ch;
     int nb_lignes = 1;
-    fichier = fopen(nom_fichier, "r");
+    fichier = fopen(filename, "r");
 
     //vérification d'ouverture
     if (fichier == NULL)
@@ -28,13 +25,13 @@ int compteur_ligne(char *nom_fichier)
 
 }
 
-void affiche_debut_ligne(char *nom_fichier, int nbTotalLigne, int choix_lignes)
+void affiche_debut_ligne(char *filename, int nbTotalLigne, int choix_lignes)
 {
     FILE *fichier;
     char ligne[nbTotalLigne];
     int numLigne = 1;
 
-    fichier = fopen(nom_fichier, "r");
+    fichier = fopen(filename, "r");
 
     if (fichier == NULL)
     {
@@ -51,12 +48,12 @@ void affiche_debut_ligne(char *nom_fichier, int nbTotalLigne, int choix_lignes)
     fclose(fichier);
 }
 
-void affiche_fin_ligne(char *nom_fichier, int nbTotalLigne, int choix_lignes)
+void affiche_fin_ligne(char *filename, int nbTotalLigne, int choix_lignes)
 {
     FILE *fichier;
     char ligne[nbTotalLigne][100];
     
-    fichier = fopen(nom_fichier, "r");
+    fichier = fopen(filename, "r");
 
     if (fichier == NULL)
     {
@@ -88,11 +85,11 @@ void affiche_fin_ligne(char *nom_fichier, int nbTotalLigne, int choix_lignes)
     fclose(fichier);
 }
 
-void filtre_CIDR(char *nom_fichier, int nbTotalLigne, char *CIDR)
+void filtre_CIDR(char *filename, int nbTotalLigne, char *CIDR)
 {
     char ligne[nbTotalLigne];
     int i=0;
-    FILE* fichier = fopen(nom_fichier, "r");
+    FILE* fichier = fopen(filename, "r");
 
     if (fichier == NULL)
     {
