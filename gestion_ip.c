@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 //Prototypes
 struct IP creer_ip(int a,int b,int c,int d,int m);
 void afficher_ip(struct IP ip);

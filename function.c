@@ -13,6 +13,9 @@ int ipDecToHex();
 
 int ipBinToHex();
 
+void typeIpDec(int ip[]);
+void typeIpBin(long long ip[]);
+
 
 int clearScreen(){
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -41,6 +44,7 @@ int ipDecTobin(){
     printf("Entrez une adresse IP décimale (séparée par des points) : ");
     scanf("%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
     printf("L'adresse IP binaire est : %d.%d.%d.%d\n",decToBin(ip[0]), decToBin(ip[1]), decToBin(ip[2]), decToBin(ip[3]));
+    typeIpDec(ip);
     return 0;
 }
 
@@ -65,6 +69,7 @@ int ipBinTodec(){
     printf("Entrez une adresse IP binaire (séparée par des points) : ");
     scanf("%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
     printf("L'adresse IP binaire est : %d.%d.%d.%d\n",binToDec(ip[0]), binToDec(ip[1]), binToDec(ip[2]), binToDec(ip[3]));
+    typeIpBin(ip);
     return 0;
 }
 
@@ -97,7 +102,7 @@ int decToHex(int dec) {
 
 int ipDecToHex(){
     clearScreen();
-    long long ip[4]={0};
+    int ip[4]={0};
     printf("Entrez une adresse IP decimal (séparée par des points) : ");
     scanf("%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
     printf("L'adresse IP hexadecimale est : ");
@@ -105,6 +110,7 @@ int ipDecToHex(){
     decToHex(ip[1]); printf(".");
     decToHex(ip[2]); printf("."); 
     decToHex(ip[3]); printf("\n");
+    typeIpDec(ip);
     return 0;
 }
 
@@ -118,6 +124,7 @@ int ipBinToHex(){
     decToHex(binToDec(ip[1])); printf(".");
     decToHex(binToDec(ip[2])); printf("."); 
     decToHex(binToDec(ip[3])); printf("\n");
+    typeIpBin(ip);
     return 0;
 }
 
@@ -156,6 +163,7 @@ int ipHexToDec(){
 
     printf("L'adresse IP decimale est : ");
     printf("%d.%d.%d.%d\n", hexToDec(ip[0]), hexToDec(ip[1]), hexToDec(ip[2]), hexToDec(ip[3]));
+    
 
     return 0;
 
@@ -175,4 +183,65 @@ int ipHexToBin(){
 
     return 0;
 
+}
+void typeIpDec(int ip[]) {
+   if  (ip[0]==127 && ip[1]==0 && ip[2]==0 && ip[3]==1 ){
+        printf("%d.%d.%d.%d est une une adresse loopback\n",  ip[0], ip[1], ip[2], ip[3]);
+   }else{
+      if (ip[0]==10 && 
+            ip[1]>=0 && ip[1]<=255 &&
+            ip[2]>=0 && ip[2]<=255 &&
+            ip[3]>=0 && ip[3]<=255 ){
+            printf("%d.%d.%d.%d est une une adresse privée de classe A\n",  ip[0], ip[1], ip[2], ip[3]);
+
+      }else{
+         if (ip[0]==172 && 
+            ip[1]>=16 && ip[1]<=31 &&
+            ip[2]>=0 && ip[2]<=255 &&
+            ip[3]>=0 && ip[3]<=255 ){
+            printf("%d.%d.%d.%d est une une adresse privée de classe B\n",  ip[0], ip[1], ip[2], ip[3]);
+         }else{
+            if (ip[0]==192 && 
+               ip[1]>=168 &&
+               ip[2]>=0 && ip[2]<=255 &&
+               ip[3]>=0 && ip[3]<=255 ){
+            printf("%d.%d.%d.%d est une une adresse privée de classe C\n",  ip[0], ip[1], ip[2], ip[3]);
+            }
+            else{
+            printf("%d.%d.%d.%d est une une adresse publique\n",  ip[0], ip[1], ip[2], ip[3]);
+            }
+         }
+      }
+   }
+}
+
+void typeIpBin(long long ip[]) {
+   if  (ip[0]==decToBin(127) && ip[1]==0 && ip[2]==0 && ip[3]==1 ){
+        printf("%d.%d.%d.%d est une une adresse loopback\n",  ip[0], ip[1], ip[2], ip[3]);
+   }else{
+      if (ip[0]==decToBin(10) && 
+            ip[1]>=0 && ip[1]<=decToBin(255) &&
+            ip[2]>=0 && ip[2]<=decToBin(255) &&
+            ip[3]>=0 && ip[3]<=decToBin(255) ){
+            printf("%d.%d.%d.%d est une une adresse privée de classe A\n",  ip[0], ip[1], ip[2], ip[3]);
+
+      }else{
+         if (ip[0]==decToBin(172) && 
+            ip[1]>=decToBin(16) && ip[1]<=decToBin(31) &&
+            ip[2]>=0 && ip[2]<=decToBin(255) &&
+            ip[3]>=0 && ip[3]<=decToBin(255) ){
+            printf("%lld.%lld.%lld.%lld est une une adresse privée de classe B\n",  ip[0], ip[1], ip[2], ip[3]);
+         }else{
+            if (ip[0]==decToBin(192) && 
+               ip[1]>=decToBin(168) &&
+               ip[2]>=0 && ip[2]<=decToBin(255) &&
+               ip[3]>=0 && ip[3]<=decToBin(255) ){
+            printf("%lld.%lld.%lld.%lld est une une adresse privée de classe C\n",  ip[0], ip[1], ip[2], ip[3]);
+            }
+            else{
+            printf("%lld.%lld.%lld.%lld est une une adresse publique\n",  ip[0], ip[1], ip[2], ip[3]);
+            }
+         }
+      }
+   }
 }
